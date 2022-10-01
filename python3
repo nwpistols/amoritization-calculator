@@ -1,0 +1,29 @@
+def calculate():
+
+loan = document.getElementById('loan').value;
+interest = document.getElementById('interest').value;
+years = document.getElementById('years').value;
+zipcode = document.getElementById('zipcode').value;
+payment = document.getElementById('payment');
+total = document.getElementById('total');
+totalinterest = document.getElementById('totalinterest');
+
+if(years > 1){
+
+month = years * 12;
+rate = interest / 100 / 12;
+z = Math.pow(1 + rate, month);
+payment.innerHTML = "$" + Math.round(loan * rate * z / (z - 1));
+total.innerHTML = "$" + Math.round(payment.innerHTML.replace(/\$|,/g, '') * month);
+totalinterest.innerHTML = "$" + Math.round(total.innerHTML.replace(/\$|,/g, '') - loan);
+}
+else
+{
+month = years * 12;
+rate = interest / 100;
+
+payment.innerHTML = "$" + Math.round(loan * rate);
+total.innerHTML = "$" + Math.round(payment.innerHTML.replace(/\$|,/g, '') * month);
+totalinterest.innerHTML = "$" + Math.round(total.innerHTML.replace(/\$|,/g, '') - loan);
+}
+}
